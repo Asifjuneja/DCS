@@ -1,0 +1,57 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class studInformation : System.Web.UI.Page
+{
+    method1 m = new method1();
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+
+    }
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+
+    }
+    protected void btnRefresh_Click(object sender, ImageClickEventArgs e)
+    {
+
+    }
+    protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+    {
+
+    }
+    protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
+    {
+
+    }
+
+    protected void grdData_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gv_stud.PageIndex = e.NewPageIndex;
+        this.BindListView("and 1=1");
+    }
+    private void BindListView(string criteria)
+    {
+
+        //string p_criteria="and 1=1";
+        DataSet p_dept_data = new DataSet();
+
+        m.BindDept(criteria, p_dept_data).ToString();
+
+        DataTable dt_dept = p_dept_data.Tables[0];
+
+        gv_stud.DataSource = dt_dept;
+
+        gv_stud.DataBind();
+
+    }
+
+}

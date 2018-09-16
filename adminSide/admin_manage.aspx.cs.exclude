@@ -1,0 +1,187 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+
+public partial class adminSide_admin_manage : System.Web.UI.Page
+{
+    SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString);
+    SqlCommand cmd;
+    SqlDataAdapter sda;
+    int ID=0;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+                    displayData();
+            lblMessage.Text = "";
+        
+        ListView1.DataBind();
+    }
+    protected void btnInsert_Click(object sender, EventArgs e)
+    {
+        if(txtname.Text !="" && txtemail.Text !="" && txtpw.Text !="" && txtadd.Text !="" && txtdept.Text != "" && txtphone.Text != "")
+        {
+            cmd=new SqlCommand("insert into tbl_student(stud_name,stud_email,stud_pw,stud_add,stud_dept,stud_phone) values(@name,@email,@pass,@add,@dept,@phone)",con);
+            con.Open();
+            cmd.Parameters.AddWithValue("@name", txtname.Text);
+            cmd.Parameters.AddWithValue("@email", txtemail.Text);
+            cmd.Parameters.AddWithValue("@pass", txtpw.Text);
+            cmd.Parameters.AddWithValue("@add", txtadd.Text);
+            cmd.Parameters.AddWithValue("@dept", txtdept.Text);
+            cmd.Parameters.AddWithValue("@phone", txtphone.Text);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            lblMessage.Text="Record Inserted..";
+            displayData();
+            clearData();
+            ListView1.DataBind();
+        }
+        else
+        {
+            lblMessage.Text="Please Insert All Required Fields";
+        }
+    }
+    protected void btnUpdate_Click(object sender, EventArgs e)
+    {
+        if (txtname.Text != "" && txtemail.Text != "" && txtpw.Text != "" && txtadd.Text != "" && txtdept.Text != "" && txtphone.Text != "")
+        {
+            cmd = new SqlCommand("update tbl_student set stud_name=@name,stud_email=@email,stud_pw=@pass,stud_add=@add,stud_dept=@dept,stud_phone=@phone where stud_name=@name",con);
+            con.Open();
+           
+            cmd.Parameters.AddWithValue("@name", txtname.Text);
+            cmd.Parameters.AddWithValue("@email", txtemail.Text);
+            cmd.Parameters.AddWithValue("@pass", txtpw.Text);
+            cmd.Parameters.AddWithValue("@add", txtadd.Text);
+            cmd.Parameters.AddWithValue("@dept", txtdept.Text);
+            cmd.Parameters.AddWithValue("@phone", txtphone.Text);
+            cmd.ExecuteNonQuery();
+            lblMessage.Text = "Record Updated...";
+            con.Close();
+            displayData();
+            clearData();
+        }
+        else
+        {
+            lblMessage.Text = "Please Select Record to Update";
+        }
+    }
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        if (ID != 0)
+        {
+            cmd = new SqlCommand("delete tbl_student where stud_id=@id", con);
+            con.Open();
+            cmd.Parameters.AddWithValue("@id",ID);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            lblMessage.Text="Record Deleted...";
+            displayData();
+            clearData();
+        }
+        else
+        {
+            lblMessage.Text = "Please Select a Record ...";
+        }
+    }
+
+    public void displayData()
+    {
+    }
+    public void clearData()
+    {
+        txtname.Text = "";
+        txtemail.Text = "";
+        txtpw.Text = "";
+        txtadd.Text = "";
+        txtdept.Text = "";
+        txtphone.Text = "";
+        ID = 0;
+    }
+}
+
+
+
+
+    //protected void grdStudent_SelectedIndexChanged(object sender, EventArgs e)
+    //{
+    //    GridViewRow row = grdStudent.SelectedRow;
+    //    txtname.Text=row.Cells[0].Text;
+    //    txtemail.Text = row.Cells[1].Text;
+    //    txtpw.Text = row.Cells[2].Text;
+    //    txtadd.Text = row.Cells[3].Text;
+    //    txtdept.Text = row.Cells[4].Text;
+    //    txtphone.Text = row.Cells[5].Text;
+    //}
+//}
+
+// con.Open();
+//// string insertq = "INSERT INTO TBL_STUDENT(STUD_NAME,STUD_EMAIL,STUD_PW) VALUES (@name,@email,@password)";
+
+// string insertQuery = "insert into tbl_student(stud_name,stud_email,stud_pw,stud_add,stud_dept,stud_phone) values(@name,@email,@pass,@add,@dept,@phone)";
+// cmd = new SqlCommand(insertQuery,con);
+
+// cmd.ExecuteNonQuery();
+// lblMessage.Text = "Record Has Been Inserted ...";
+// con.Close();
+// display();
+// clearText();
+
+
+        //con.Open();
+
+        //cmd.ExecuteNonQuery();
+        //lblMessage.Text = "Record Has Been Deleted ...";
+        //con.Close();
+        //display();
+
+
+        //con.Open();
+        //string updateQuery = "update tbl_student set stud_name='" + txtname.Text + "',stud_email='" + txtemail.Text + "',stud_pw='" + txtpw.Text + "',stud_add='" + txtadd.Text + "',stud_dept'" + txtdept.Text + "',stud_phone='" + txtphone.Text + "' where stud_id='" + Session["id"] + "' ";
+        //cmd = new SqlCommand(updateQuery,con);
+        //cmd.ExecuteNonQuery();
+        //lblMessage.Text="Record Has Been Updated ...";
+        //con.Close();
+        //clearText();
+
+//protected void lnkSelect_Click(object sender, EventArgs e)
+//{
+
+//        LinkButton btn = (LinkButton)sender;
+//        if (Session["id"] == null)
+//        {
+//            Session["id"] = btn.CommandArgument;
+//        }
+//        else
+//        {
+//            Session["id"] = null;
+//            Session["id"] = btn.CommandArgument;
+//        }
+
+//        con.Open();
+//        cmd = new SqlCommand("select *from tbl_student", con);
+//        DataSet ds = new DataSet();
+//        sda = new SqlDataAdapter(cmd);
+//        sda.Fill(ds,"student");
+//        grdStudent.DataSource=ds.Tables[0];
+//        grdStudent.DataBind();
+
+//            GridViewRow row = grdStudent.SelectedRow;
+//            txtname.Text = row.Cells[0].Text;
+//            txtemail.Text = row.Cells[1].Text;
+//            txtpw.Text = row.Cells[2].Text;
+//            txtadd.Text = row.Cells[3].Text;
+//            txtdept.Text = row.Cells[4].Text;
+//            txtphone.Text = row.Cells[5].Text;
+//            //txtname.Text = dt.Rows[0]["stud_name"].ToString();
+//            //txtemail.Text = dt.Rows[0]["stud_email"].ToString();
+//            //txtpw.Text = dt.Rows[0]["stud_pw"].ToString();
+//            //txtadd.Text = dt.Rows[0]["stud_add"].ToString();
+//            //txtdept.Text = dt.Rows[0]["stud_dept"].ToString();
+//            //txtphone.Text = dt.Rows[0]["stud_phone"].ToString();
+//            con.Close();
+//        }
+

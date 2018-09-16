@@ -1,0 +1,263 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="studInformation.aspx.cs" Inherits="studInformation" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Department Information</title>
+
+    <link href="css/StyleSheet.css" rel="stylesheet" />
+    <link href="bazinger-landing-page/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="bazinger-landing-page/assets/css/plugins.css" rel="stylesheet" />
+    <link href="bazinger-landing-page/assets/css/style.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function Validatealphanum(event) {
+
+            if ((event.keyCode >= 65 && event.keyCode <= 90) || event.keyCode == 32)
+                event.returnValue = true;
+            else if (event.keyCode >= 97 && event.keyCode <= 122)
+                event.returnValue = true;
+            else if (event.keyCode >= 48 && event.keyCode <= 57)
+                event.returnValue = true;
+
+            else
+                event.returnValue = false;
+        }
+        function Validatenum(event) {
+            if (event.keyCode >= 48 && event.keyCode <= 57)
+                event.returnValue = true;
+
+            else
+                event.returnValue = false;
+        }
+    </script>
+    <style>
+        .imghome
+        {
+            float: left;
+        }
+
+        .imglogout
+        {
+            float: right;
+        }
+    </style>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+        </cc1:ToolkitScriptManager>
+
+        <%--        <asp:Panel ID="Panel1" Style="border-width: 5px; border-color: black; height:750px; margin-top:5px;width:100%"  runat="server" BorderStyle="Double">
+          
+            <div id="dvclose1" runat="server" visible="TRUE">
+                <div>
+                    <asp:ImageButton ID="imgback" CssClass="imghome" ImageUrl="~/img/home.png" runat="server" Height="33px" PostBackUrl="~/index.aspx" Width="40px" OnClick="imgback_Click" />
+                    <asp:ImageButton CssClass="imglogout" ID="imglogout" runat="server" Height="33px" ImageUrl="~/img/logout.png" Width="40px" OnClick="imglogout_Click" />
+               
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               
+                  <asp:Image ID="Image1" runat="server"  ImageUrl="img/dept.jpg" width="80%" Height="145px" />
+            </div>
+               
+                <br />
+                <asp:UpdatePanel runat="server" ID="upnlGridView1" UpdateMode="Always">
+                    <ContentTemplate>
+
+
+                     <%--   <table style="width: 100%; height: 50px; text-align: center;">
+                            <tr>
+                                <td>
+                                    <asp:TextBox ID="txtdeptid" runat="server" Height="38px" placeholder="Department ID" onkeypress="return Validatenum(event)" Width="160px" Font-Bold="True"></asp:TextBox>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="txtdeptname" runat="server" placeholder="Department Name" onkeypress="return Validatealphanum(event)" Height="38px" Width="160px" Font-Bold="True"></asp:TextBox>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="txtdeptloc" runat="server" placeholder="Department Location" onkeypress="return Validatealphanum(event)" Height="38px" Width="160px" Font-Bold="True"></asp:TextBox>
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+                        <table style="width: 100%; height: 50px; text-align: center;">
+                            <tr>
+                                <td>
+                                    <asp:Button ID="btnsearch" class="btn btn-warning" runat="server" Height="38px" Text="Search" Width="107px" OnClick="btnsearch_Click" />
+                                    &nbsp;&nbsp;&nbsp;
+                                <asp:Button runat="server" CssClass="btn btn-warning" Text="Insert" ID="btninsert" Height="38px" Width="107px" OnClick="btnadd_Click"></asp:Button>
+                                    &nbsp;&nbsp;&nbsp;
+                                <asp:Button runat="server" class="btn btn-warning" Text="Update" ID="btnupdate" Height="38px" Width="107px" OnClick="btnupdate_Click"></asp:Button>
+                                    &nbsp;&nbsp;&nbsp;
+                                <asp:Button ID="btndelete" class="btn btn-warning" runat="server" Height="38px" OnClick="btndelete_Click" Text="Delete" Width="107px" />
+                                    &nbsp;&nbsp;
+                               <asp:ImageButton ID="btnrefresh" runat="server" Height="20px" ImageUrl="~/img/refresh.png" Width="25px" OnClick="btnrefresh_Click" />
+                                     </td>
+                            </tr>
+                        </table>
+
+                        <cc1:ConfirmButtonExtender ID="cbe" runat="server" DisplayModalPopupID="mpe" TargetControlID="btndelete">
+                        </cc1:ConfirmButtonExtender>
+                        <cc1:ModalPopupExtender ID="mpe" runat="server" PopupControlID="pnlPopup" TargetControlID="btndelete" OkControlID="imgbtn_right"
+                            CancelControlID="imgbtn_cncl" BackgroundCssClass="modalBackground">
+                        </cc1:ModalPopupExtender>
+                        <asp:Panel ID="pnlPopup" runat="server" CssClass="modalPopup" Style="display: none">
+                            <div class="header">
+                                Delete ?
+                            </div>
+                            <br />
+                            <div class="body">
+                                It Will Delete All The Information Of Employees and Their Designations Of This Department...<br />
+                                Do You Want To Continue ?
+                            </div>
+                            <div class="footer" style="text-align: center">
+                                <asp:ImageButton ID="imgbtn_right" ImageUrl="img/tick.png" runat="server" />
+                                &nbsp;&nbsp;&nbsp;
+                                <asp:ImageButton ID="imgbtn_cncl" ImageUrl="img/cancel.png" runat="server" />
+
+                            </div>
+                        </asp:Panel>
+                        <br />--%>
+        <%--<center>
+                </asp:UpdatePanel>
+            </div>
+        </asp:Panel>--%>--%>--%>
+
+        <asp:Panel ID="Panel2" Style="border-width: 5px; border-color: black; height: 750px; margin-top: 5px; width: 100%" runat="server" BorderStyle="Double">
+            <div id="dvclose" runat="server" visible="TRUE">
+                <div>
+                    <asp:ImageButton ID="ImageButton1" CssClass="imghome" ImageUrl="~/img/home.png" runat="server" Height="33px" PostBackUrl="~/index.aspx" Width="40px" OnClick="ImageButton1_Click" />
+                    <asp:ImageButton CssClass="imglogout" ID="ImageButton2" runat="server" Height="33px" ImageUrl="~/img/logout.png" Width="40px" OnClick="ImageButton2_Click" />
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               
+                  <asp:Image ID="Image2" runat="server" ImageUrl="img/dept.jpg" Width="80%" Height="145px" />
+                </div>
+
+                <asp:UpdatePanel runat="server" ID="upnlGridView" UpdateMode="Always">
+                    <ContentTemplate>
+
+
+                        <table style="width: 100%; height: 50px; text-align: center;">
+                            <tr>
+                                <td>
+                                    <asp:TextBox ID="txtid" runat="server" Height="38px" placeholder="Student ID" onkeypress="return Validatenum(event)" Width="160px" Font-Bold="True"></asp:TextBox>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="txtname" runat="server" placeholder="Student Name" onkeypress="return Validatealphanum(event)" Height="38px" Width="160px" Font-Bold="True"></asp:TextBox>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="TextBox3" runat="server" placeholder="Student Email" onkeypress="return Validatealphanum(event)" Height="38px" Width="160px" Font-Bold="True"></asp:TextBox>
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+                        <table style="width: 100%; height: 50px; text-align: center;">
+                            <tr>
+                                <td>
+                                    <asp:Button ID="btnSearch" class="btn btn-warning" runat="server" Height="38px" Text="Search" Width="107px" OnClick="btnSearch_Click" />
+                                    &nbsp;&nbsp;&nbsp;
+                                
+                               
+                                <asp:Button ID="btnDelete" class="btn btn-warning" runat="server" Height="38px" OnClick="btnDelete_Click" Text="Delete" Width="107px" />
+                                    &nbsp;&nbsp;
+                               <asp:ImageButton ID="btnRefresh" runat="server" Height="20px" ImageUrl="~/img/refresh.png" Width="25px" OnClick="btnRefresh_Click" />
+                                </td>
+                            </tr>
+                        </table>
+
+                        <cc1:ConfirmButtonExtender ID="ConfirmButtonExtender1" runat="server" DisplayModalPopupID="mpe" TargetControlID="btnDelete">
+                        </cc1:ConfirmButtonExtender>
+                        <cc1:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="pnlPopup" TargetControlID="btnDelete" OkControlID="imgbtn_right"
+                            CancelControlID="imgbtn_cncl" BackgroundCssClass="modalBackground">
+                        </cc1:ModalPopupExtender>
+                        <asp:Panel ID="pnlPopup" runat="server" CssClass="modalPopup" Style="display: none">
+                            <div class="header">
+                                Delete ?
+                            </div>
+                            <br />
+                            <div class="body">
+                                It Will Delete Record Of Student...<br />
+                                Do You Want To Continue ?
+                            </div>
+                            <div class="footer" style="text-align: center">
+                                <asp:ImageButton ID="ImageButton3" ImageUrl="img/tick.png" runat="server" />
+                                &nbsp;&nbsp;&nbsp;
+                                <asp:ImageButton ID="ImageButton4" ImageUrl="img/cancel.png" runat="server" />
+
+                            </div>
+                        </asp:Panel>
+                        <br />
+                        <asp:Panel ID="PanelGrid" BorderStyle="Double" BorderWidth="2px" BorderColor="White" runat="server" Width="581px" Height="502px">
+                            --%>
+                      <table style="border-collapse: collapse; height: 100%; font-weight: bold;">
+                          <tr>
+                              <td>
+
+                                  <asp:GridView ID="gv_stud" CssClass="mydatagrid"
+                                      Style="text-align: center;" PagerStyle-CssClass="pager" AllowPaging="True"
+                                      OnPageIndexChanging="grdData_PageIndexChanging" EnableSortingAndPagingCallbacks="True"
+                                      HeaderStyle-CssClass="header" RowStyle-CssClass="rows" runat="server" Width="480px" AutoGenerateColumns="False">
+
+                                      <Columns>
+                                          <asp:BoundField DataField="stud_id" HeaderText="ID"
+                                              SortExpression="stud_id" />
+                                          <asp:BoundField DataField="stud_name" HeaderText="Student Name"
+                                              SortExpression="stud_name" />
+                                          <asp:BoundField DataField="stud_email" HeaderText="Email"
+                                              SortExpression="stud_email" />
+                                      </Columns>
+
+                                      <%--   <LayoutTemplate>
+                                
+                                <%--       <asp:PlaceHolder runat="server" ID="groupPlaceHolder1"></asp:PlaceHolder>
+                                    <tr>
+                                        <td colspan="3">
+                                            <asp:DataPager ID="DataPager1" runat="server" PagedControlID="lv_dept" PageSize="7">
+                                                <Fields>
+                                                    <asp:NextPreviousPagerField ButtonType="Link"  ShowFirstPageButton="false" ShowPreviousPageButton="true"
+                                                        ShowNextPageButton="false" />
+                                                    <asp:NumericPagerField ButtonType="Link" />
+                                                    <asp:NextPreviousPagerField ButtonType="Link" ShowNextPageButton="true" ShowLastPageButton="false" ShowPreviousPageButton="false" />
+                                                </Fields>
+                                            </asp:DataPager>
+                                        </td>
+                                    </tr>--%>
+
+
+                                      <PagerStyle CssClass="pager" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                      <RowStyle CssClass="rows" />
+
+                                  </asp:GridView>
+                              </td>
+                          </tr>
+                      </table></asp:Panel>
+                            </center>
+                           </LayoutTemplate>
+                            <grouptemplate>
+                                <tr>
+                                    <asp:PlaceHolder runat="server" ID="itemPlaceHolder1"></asp:PlaceHolder>
+                                </tr>
+                            </grouptemplate>
+                            <itemtemplate>
+                                <td>
+                                    <%# Eval("studid") %>
+                                </td>
+                                <td>
+                                    <%# Eval("stud_name") %>
+                                </td>
+                                <td>
+                                    <%# Eval("stud_email") %>
+                                </td>
+                            </itemtemplate>
+
+
+                            </div>
+                        <br />
+                            <div style="text-align: center;">
+                                <asp:Label ID="lblerr" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="#FF3300" Text="Label"></asp:Label>
+                            </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </asp:Panel>
+    </form>
+</body>
+</html>

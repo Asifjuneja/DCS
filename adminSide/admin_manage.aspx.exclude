@@ -1,0 +1,396 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="admin_manage.aspx.cs" Inherits="adminSide_admin_manage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+<%--    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <link href="../bazinger-landing-page/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../bazinger-landing-page/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="../bazinger-landing-page/assets/css/animate.css" rel="stylesheet" />
+    <link href="../bazinger-landing-page/assets/css/select2.css" rel="stylesheet" />
+    <link href="../bazinger-landing-page/assets/css/perfect-scrollbar.css" rel="stylesheet" />
+    <link href="../bazinger-landing-page/assets/css/main.css" rel="stylesheet" />
+    <link href="../bazinger-landing-page/assets/css/util.css" rel="stylesheet" />--%>
+</head>
+<body>
+    <form id="f1" runat="server">
+        <%--<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+					<div class="table">
+
+						<div class="row header">
+							<div class="cell">
+								Full Name
+							</div>
+							<div class="cell">
+								Age
+							</div>
+							<div class="cell">
+								Job Title
+							</div>
+							<div class="cell">
+								Location
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell" data-title="Full Name">
+								Vincent Williamson
+							</div>
+							<div class="cell" data-title="Age">
+								31
+							</div>
+							<div class="cell" data-title="Job Title">
+								iOS Developer
+							</div>
+							<div class="cell" data-title="Location">
+								Washington
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell" data-title="Full Name">
+								Joseph Smith
+							</div>
+							<div class="cell" data-title="Age">
+								27
+							</div>
+							<div class="cell" data-title="Job Title">
+								Project Manager
+							</div>
+							<div class="cell" data-title="Location">
+								Somerville, MA
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell" data-title="Full Name">
+								Justin Black
+							</div>
+							<div class="cell" data-title="Age">
+								26
+							</div>
+							<div class="cell" data-title="Job Title">
+								Front-End Developer
+							</div>
+							<div class="cell" data-title="Location">
+								Los Angeles
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell" data-title="Full Name">
+								Sean Guzman
+							</div>
+							<div class="cell" data-title="Age">
+								25
+							</div>
+							<div class="cell" data-title="Job Title">
+								Web Designer
+							</div>
+							<div class="cell" data-title="Location">
+								San Francisco
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell" data-title="Full Name">
+								Keith Carter
+							</div>
+							<div class="cell" data-title="Age">
+								20
+							</div>
+							<div class="cell" data-title="Job Title">
+								Graphic Designer
+							</div>
+							<div class="cell" data-title="Location">
+								New York, NY
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell" data-title="Full Name">
+								Austin Medina
+							</div>
+							<div class="cell" data-title="Age">
+								32
+							</div>
+							<div class="cell" data-title="Job Title">
+								Photographer
+							</div>
+							<div class="cell" data-title="Location">
+								New York
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell" data-title="Full Name">
+								Vincent Williamson
+							</div>
+							<div class="cell" data-title="Age">
+								31
+							</div>
+							<div class="cell" data-title="Job Title">
+								iOS Developer
+							</div>
+							<div class="cell" data-title="Location">
+								Washington
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="cell" data-title="Full Name">
+								Joseph Smith
+							</div>
+							<div class="cell" data-title="Age">
+								27
+							</div>
+							<div class="cell" data-title="Job Title">
+								Project Manager
+							</div>
+							<div class="cell" data-title="Location">
+								Somerville, MA
+							</div>
+						</div>
+
+					</div>
+			</div>
+		</div>
+	</div>--%>
+        <div>
+            <asp:TextBox ID="txtname" placeholder="Name" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtemail" placeholder="Email" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtpw" placeholder="Password" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtadd" placeholder="Address" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtdept" placeholder="Department" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtphone" placeholder="Phone Number" runat="server"></asp:TextBox><br />
+            <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label><br />
+
+            <asp:Button ID="btnInsert" runat="server" Text="Add New" OnClick="btnInsert_Click" />
+            <asp:Button ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click" />
+            <asp:Button ID="btnDelete" runat="server" Text="Delete" OnClick="btnDelete_Click" />
+        </div>
+        <div>
+
+        </div>
+
+
+
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="../bazinger-landing-page/assets/css/bootstrap.js"></script>
+    <script src="../bazinger-landing-page/assets/css/popper.js"></script>
+    <script src="../bazinger-landing-page/assets/css/select2.js"></script>
+    <script src="../bazinger-landing-page/assets/css/main.js"></script>
+
+
+        <asp:ListView ID="ListView1" runat="server" DataKeyNames="stud_id" DataSourceID="SqlDataSource1">
+            <AlternatingItemTemplate>
+                <tr style="background-color: #FAFAD2;color: #284775;">
+                    <td>
+                        <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_idLabel" runat="server" Text='<%# Eval("stud_id") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_nameLabel" runat="server" Text='<%# Eval("stud_name") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_emailLabel" runat="server" Text='<%# Eval("stud_email") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_pwLabel" runat="server" Text='<%# Eval("stud_pw") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_addLabel" runat="server" Text='<%# Eval("stud_add") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_deptLabel" runat="server" Text='<%# Eval("stud_dept") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_phoneLabel" runat="server" Text='<%# Eval("stud_phone") %>' />
+                    </td>
+                </tr>
+            </AlternatingItemTemplate>
+            <EditItemTemplate>
+                <tr style="background-color: #FFCC66;color: #000080;">
+                    <td>
+                        <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="Update" />
+                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_idLabel1" runat="server" Text='<%# Eval("stud_id") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="stud_nameTextBox" runat="server" Text='<%# Bind("stud_name") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="stud_emailTextBox" runat="server" Text='<%# Bind("stud_email") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="stud_pwTextBox" runat="server" Text='<%# Bind("stud_pw") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="stud_addTextBox" runat="server" Text='<%# Bind("stud_add") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="stud_deptTextBox" runat="server" Text='<%# Bind("stud_dept") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="stud_phoneTextBox" runat="server" Text='<%# Bind("stud_phone") %>' />
+                    </td>
+                </tr>
+            </EditItemTemplate>
+            <EmptyDataTemplate>
+                <table runat="server" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;">
+                    <tr>
+                        <td>No data was returned.</td>
+                    </tr>
+                </table>
+            </EmptyDataTemplate>
+            <InsertItemTemplate>
+                <tr style="">
+                    <td>
+                        <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="Insert" />
+                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Clear" />
+                    </td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <asp:TextBox ID="stud_nameTextBox" runat="server" Text='<%# Bind("stud_name") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="stud_emailTextBox" runat="server" Text='<%# Bind("stud_email") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="stud_pwTextBox" runat="server" Text='<%# Bind("stud_pw") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="stud_addTextBox" runat="server" Text='<%# Bind("stud_add") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="stud_deptTextBox" runat="server" Text='<%# Bind("stud_dept") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="stud_phoneTextBox" runat="server" Text='<%# Bind("stud_phone") %>' />
+                    </td>
+                </tr>
+            </InsertItemTemplate>
+            <ItemTemplate>
+                <tr style="background-color: #FFFBD6;color: #333333;">
+                    <td>
+                        <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_idLabel" runat="server" Text='<%# Eval("stud_id") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_nameLabel" runat="server" Text='<%# Eval("stud_name") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_emailLabel" runat="server" Text='<%# Eval("stud_email") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_pwLabel" runat="server" Text='<%# Eval("stud_pw") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_addLabel" runat="server" Text='<%# Eval("stud_add") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_deptLabel" runat="server" Text='<%# Eval("stud_dept") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_phoneLabel" runat="server" Text='<%# Eval("stud_phone") %>' />
+                    </td>
+                </tr>
+            </ItemTemplate>
+            <LayoutTemplate>
+                <table runat="server">
+                    <tr runat="server">
+                        <td runat="server">
+                            <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
+                                <tr runat="server" style="background-color: #FFFBD6;color: #333333;">
+                                    <th runat="server"></th>
+                                    <th runat="server">stud_id</th>
+                                    <th runat="server">stud_name</th>
+                                    <th runat="server">stud_email</th>
+                                    <th runat="server">stud_pw</th>
+                                    <th runat="server">stud_add</th>
+                                    <th runat="server">stud_dept</th>
+                                    <th runat="server">stud_phone</th>
+                                </tr>
+                                <tr id="itemPlaceholder" runat="server">
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr runat="server">
+                        <td runat="server" style="text-align: center;background-color: #FFCC66;font-family: Verdana, Arial, Helvetica, sans-serif;color: #333333;">
+                            <asp:DataPager ID="DataPager1" runat="server">
+                                <Fields>
+                                    <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowLastPageButton="True" />
+                                </Fields>
+                            </asp:DataPager>
+                        </td>
+                    </tr>
+                </table>
+            </LayoutTemplate>
+            <SelectedItemTemplate>
+                <tr style="background-color: #FFCC66;font-weight: bold;color: #000080;">
+                    <td>
+                        <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_idLabel" runat="server" Text='<%# Eval("stud_id") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_nameLabel" runat="server" Text='<%# Eval("stud_name") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_emailLabel" runat="server" Text='<%# Eval("stud_email") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_pwLabel" runat="server" Text='<%# Eval("stud_pw") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_addLabel" runat="server" Text='<%# Eval("stud_add") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_deptLabel" runat="server" Text='<%# Eval("stud_dept") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="stud_phoneLabel" runat="server" Text='<%# Eval("stud_phone") %>' />
+                    </td>
+                </tr>
+            </SelectedItemTemplate>
+        </asp:ListView>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MyConnectionString %>" DeleteCommand="DELETE FROM [tbl_student] WHERE [stud_id] = @stud_id" InsertCommand="INSERT INTO [tbl_student] ([stud_name], [stud_email], [stud_pw], [stud_add], [stud_dept], [stud_phone]) VALUES (@stud_name, @stud_email, @stud_pw, @stud_add, @stud_dept, @stud_phone)" SelectCommand="SELECT * FROM [tbl_student]" UpdateCommand="UPDATE [tbl_student] SET [stud_name] = @stud_name, [stud_email] = @stud_email, [stud_pw] = @stud_pw, [stud_add] = @stud_add, [stud_dept] = @stud_dept, [stud_phone] = @stud_phone WHERE [stud_id] = @stud_id">
+            <DeleteParameters>
+                <asp:Parameter Name="stud_id" Type="Int32" />
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="stud_name" Type="String" />
+                <asp:Parameter Name="stud_email" Type="String" />
+                <asp:Parameter Name="stud_pw" Type="String" />
+                <asp:Parameter Name="stud_add" Type="String" />
+                <asp:Parameter Name="stud_dept" Type="String" />
+                <asp:Parameter Name="stud_phone" Type="String" />
+            </InsertParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="stud_name" Type="String" />
+                <asp:Parameter Name="stud_email" Type="String" />
+                <asp:Parameter Name="stud_pw" Type="String" />
+                <asp:Parameter Name="stud_add" Type="String" />
+                <asp:Parameter Name="stud_dept" Type="String" />
+                <asp:Parameter Name="stud_phone" Type="String" />
+                <asp:Parameter Name="stud_id" Type="Int32" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
+    </form>
+
+
+
+    </body>
+</html>
